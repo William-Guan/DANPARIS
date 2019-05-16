@@ -1,116 +1,48 @@
- 
-let videos = [new vidbg('body', {
-	      mp4: 'media/1.mp4',
-	      overlay: false
-}, {}),
-new vidbg('body', {
-	      mp4: 'media/2.mp4',
-	      overlay: false
-}, {}),
-new vidbg('body', {
-	      mp4: 'media/3.mp4',
-	      overlay: false
-}, {}),
-new vidbg('body', {
-	      mp4: 'media/4.mp4',
-	      overlay: false
-}, {}),
-new vidbg('body', {
-	      mp4: 'media/5.mp4',
-	      overlay: false
-}, {}),
-new vidbg('body', {
-	      mp4: 'media/6.mp4',
-	      overlay: false
-}, {}),
-new vidbg('body', {
-	      mp4: 'media/7.mp4',
-	      overlay: false
-}, {}),
-new vidbg('body', {
-	      mp4: 'media/7.mp4',
-	      overlay: false
-}, {})];
-
-let homeTitles = ['THE MAGIC WALLPAPER','HANDSAWAY',
-					'IT\'S JUST THE BELL','WHY SO SERIOUS',
-					'SPARKS IN COLORS','THE IMPOSSIBLE CHANLLENGE',
-					'THE SOUND OF SLIVER','CROSSING AT OWN RISK'];
-
-var index = 0;		// 视频轮播下标
-var timer;
-var hasRemove = true;
-
-var rightToggle = document.querySelector('.controls.right');
-var leftToggle = document.querySelector('.controls.left');
-
-window.onload = () => {
-	initHomeTitle();
-	$('.home-title h1').eq(index).show();
-	loadingDone(loopTimer);
+// 点击切换视频 传入true左
+function toggleslide(direction){
+	clearTimeout(clicktimer);
+	clicktimer = setTimeout(function(){
+		if(hasRemove){				// 防抖
+			hasRemove=false;	
+			clearInterval(timer);
+			slideVideos(direction,()=>{
+				$('.home-title h1').eq(index).textillate('in');	// 视频完全撤场之后显示title
+				hasRemove = true;
+				loopTimer();
+			});
+		}
+	}, 1000);
 }
 
-rightToggle.onclick = ()=>{
-	if(hasRemove){				// 防抖
-		hasRemove=false;	
-		clearInterval(timer);
-		slideVideos(()=>{
-			hasRemove = true;
-			loopTimer();
-		});
-	}
-}
-
-leftToggle.onclick = () => {
-	if(hasRemove){				// 防抖
-		hasRemove=false;	
-		clearInterval(timer);
-		slideVideos(()=>{
-			hasRemove = true;
-			loopTimer();
-		},true);
-	}
-}
-
-function toggleslides(toggle,hasRemove){
-
-}
-
+// 视频自动轮播
 function loopTimer(){
-	// 显示方块蒙版
-	$('.pattern')[0].style.visibility = 'visible';
-	$('.home-title h1').eq(0).textillate('in');
 	timer = setInterval(function(){
-		slideVideos(()=>{
-			$('.home-title h1').eq(index).textillate('in');
+		slideVideos(false,()=>{
+			$('.home-title h1').eq(index).textillate('in');	// 视频完全撤场之后显示title
 		});
-	}, 4000);
+	}, 10000);
 }
 
-function slideVideos(callback,direction){		// 切换视频 ,callback 切换回调
+// 切换视频 ,callback 切换回调，direction 方向true左
+function slideVideos(direction,callback){		
+	$('.home-title h1').eq(index).textillate('out');		// 当前视频标题隐藏
+	disanima('out');						//discover按钮
 	if(direction){
 		videos[index--].removeVideo(callback);	//当前视频隐藏
-
 	}else{
-		$('.home-title h1').eq(index).textillate('out');		// 当前视频标题隐藏
-		disanima('out');
 		videos[index++].removeVideo(callback);	//当前视频隐藏
 	}
-	
 	if(index==videos.length){
 		index=0;
 	}
-
 	if(index<0){
 		index = videos.length-1;
 	}
-	
 	videos[index].showVideo();
 }
 
-
+// discover 按钮显示隐藏动画效果
 function disanima(eff){
-	
 	if(eff === 'in'){
 		anime({													// discover 按钮隐藏
 			targets: '.discover',
@@ -129,6 +61,13 @@ function disanima(eff){
 	}
 }
 
+function initHomeTitle(){
+	homeTitles.forEach((e)=>{
+		createTitle(e);
+	})
+}
+
+// 创建首页标题对象
 function createTitle(title,ineffect,outeffect){
 	 $('.home-title').append(`<h1>${title}</h1>`);
 
@@ -177,7 +116,7 @@ function createTitle(title,ineffect,outeffect){
 
 				    // callback that executes once the animation has finished
 				    callback: function () {
-				    	disanima('in');
+				    	disanima('in');	
 				    }
 				  },
 
@@ -201,8 +140,56 @@ function createTitle(title,ineffect,outeffect){
 		});
 }
 
-function initHomeTitle(){
-	homeTitles.forEach((e)=>{
-		createTitle(e);
-	})
+window.onload = () => {
+	initHomeTitle();
+	loadingDone(()=>{
+		$('.home-title h1').eq(index).textillate('in');	
+		$('.pattern')[0].style.visibility = 'visible'; // 显示方块蒙版
+		loopTimer();	
+	});
 }
+
+$('.controls.right').click( ()=>toggleslide(false));
+$('.controls.left').click( ()=>toggleslide(true));
+
+var index = 0;		// 视频轮播下标
+var timer;
+var hasRemove = true;
+var clicktimer ;
+let videos = [new vidbg('body', {
+	      mp4: 'media/1.mp4',
+	      overlay: false
+}, {}),
+new vidbg('body', {
+	      mp4: 'media/2.mp4',
+	      overlay: false
+}, {}),
+new vidbg('body', {
+	      mp4: 'media/3.mp4',
+	      overlay: false
+}, {}),
+new vidbg('body', {
+	      mp4: 'media/4.mp4',
+	      overlay: false
+}, {}),
+new vidbg('body', {
+	      mp4: 'media/5.mp4',
+	      overlay: false
+}, {}),
+new vidbg('body', {
+	      mp4: 'media/6.mp4',
+	      overlay: false
+}, {}),
+new vidbg('body', {
+	      mp4: 'media/7.mp4',
+	      overlay: false
+}, {}),
+new vidbg('body', {
+	      mp4: 'media/8.mp4',
+	      overlay: false
+}, {})];
+
+let homeTitles = ['THE MAGIC WALLPAPER','HANDSAWAY',
+					'IT\'S JUST THE BELL','WHY SO SERIOUS',
+					'SPARKS IN COLORS','THE IMPOSSIBLE CHANLLENGE',
+					'THE SOUND OF SLIVER','CROSSING AT OWN RISK'];
