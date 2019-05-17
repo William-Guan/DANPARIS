@@ -79,11 +79,11 @@ function draw(bar){
       if(counter >= 150){
         cancel();
         if(gCallback) gCallback();
-        // reset();
-        // bar.hue = 0;
-        // bar.widths = 0;
-        // counter = 0;
-        // particles = [];
+        reset();
+        bar.hue = 0;
+        bar.widths = 0;
+        counter = 0;
+        particles = [];
       }else{
         bar.hue = 126;
         bar.widths =200;
@@ -128,12 +128,12 @@ function update(){
 }
 
 function action(callback){
+  
   gCallback = callback;
   animloop();
 }
 
 function animloop() {
-  
   globalID = requestAnimFrame(animloop);
   draw(instance);
 }

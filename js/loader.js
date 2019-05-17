@@ -2,12 +2,13 @@
 var bar =new progressbar();
 
 function loadingDone(callback){
+	$('.loader').show().find('img').show();
+	
 	setTimeout(()=>action(()=>{
 		$('.loader img').fadeOut(1000,()=>{
 			$('.loader').slideUp(()=>{
-				callback();
+				if(callback) callback();
 			});
 		});
 	}),1000);
 }
-

@@ -62,9 +62,48 @@ function disanima(eff){
 }
 
 function initHomeTitle(){
-	homeTitles.forEach((e)=>{
-		createTitle(e);
-	})
+	// homeTitles.forEach((e,index)=>{
+	// 	createTitle(e);
+	// })
+	createTitle(homeTitles[0]);
+	createTitle(homeTitles[1],'fadeInLeft');
+	createTitle(homeTitles[2],'fadeInLeft','fadeOutLeft');
+	createTitle(homeTitles[3],'fadeInRightBig','fadeOutLeftBig');
+	createTitle(homeTitles[4],'fadeInRightBig','fadeOutLeftBig');
+	createTitle(homeTitles[5],'fadeInRightBig','fadeOutLeftBig');
+	createTitle(homeTitles[6],'fadeInRightBig','fadeOutLeftBig');
+	createTitle(homeTitles[7],'fadeInRightBig','fadeOutLeftBig');
+	
+}
+
+function loadTransitionAnim(){
+		
+		anime({
+		  targets: '.green',
+		  translateY: '-100%',
+		  easing: 'easeInOutExpo',
+		  duration: 1100,
+		  complete: ()=> loadingDone()
+		});
+		anime({
+		  targets: '.black',
+		  translateY: '0%',
+		  easing: 'easeInOutExpo',
+		  delay: 100,
+		  duration: 1000,
+		  complete: function(){
+
+		  	anime({
+			  targets: '.black',
+			  translateY: '-100%',
+			   easing: 'linear',
+			  duration: 300,
+			  complete: ()=>{
+			  	$('.green,.black').css('transform','translateY(100%)');
+			  }
+			})
+		  }
+		 });
 }
 
 // 创建首页标题对象
@@ -81,48 +120,37 @@ function createTitle(title,ineffect,outeffect){
 				  // (note that depending on the in effect you may need to manually apply
 				  // visibility: hidden to the element before running this plugin)
 				  initialDelay: 0,
-
 				  // set whether or not to automatically start animating
 				  autoStart: false,
-
 				  // custom set of 'in' effects. This effects whether or not the
 				  // character is shown/hidden before or after an animation
-				  inEffects: [],
-
+				  // inEffects: [],
 				  // custom set of 'out' effects
-				  outEffects: [ 'fade' ],
-
+				  // outEffects: [ 'fade' ],
 				  // in animation settings
 				  in: {
 				      // set the effect name
-				    effect: 'fadeInRightBig',
-
+				    effect: ineffect||'fadeInRightBig',
 				    // set the delay factor applied to each consecutive character
 				    delayScale: .3,
-
 				    // set the delay between each character
 				    delay: 50,
-
 				    // set to true to animate all the characters at the same time
 				    sync: false,
-
 				    // randomize the character sequence
 				    // (note that shuffle doesn't make sense with sync = true)
 				    shuffle: true,
-
 				    // reverse the character sequence
 				    // (note that reverse doesn't make sense with sync = true)
 				    reverse: false,
-
 				    // callback that executes once the animation has finished
 				    callback: function () {
 				    	disanima('in');	
 				    }
 				  },
-
 				  // out animation settings.
 				  out: {
-				    effect: 'fadeOutLeftBig',
+				    effect: outeffect||'fadeOutLeftBig',
 				    delayScale: .3,
 				    delay: 50,
 				    sync: false,
@@ -131,11 +159,8 @@ function createTitle(title,ineffect,outeffect){
 				    callback: function () {
 				    }
 				  },
-
 				  // callback that executes once textillate has finished
-				  callback: function () {
-
-				  },
+				  callback: function () {},
 				  type: 'char'
 		});
 }
@@ -151,6 +176,9 @@ window.onload = () => {
 
 $('.controls.right').click( ()=>toggleslide(false));
 $('.controls.left').click( ()=>toggleslide(true));
+$('.works').click(()=>{
+	loadTransitionAnim();
+});
 
 var index = 0;		// 视频轮播下标
 var timer;

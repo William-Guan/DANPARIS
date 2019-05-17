@@ -37,6 +37,31 @@
 	    opacity: 0.3;
 	    background: rgba(0, 0, 0, 0.7) url(../imgs/pattern.png) repeat;}
 
+	.transition{
+	    pointer-events: none;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    z-index: 990;
+
+	    .black,.green{
+			position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		}
+	    
+		.black{
+			background: black;
+		}
+		.green{
+			background: @maincolor;
+		}
+	}
+
 	.controls{
 		cursor: pointer;
 	    width: 50px;
@@ -300,7 +325,7 @@
 	    height: 46px;
 	    width: 90px;
 	    background: black;
-	    z-index: 100;
+	    z-index: 19;
 	    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
 	    transition-delay: 0.3s;
 	    color: white;

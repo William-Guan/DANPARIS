@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="libs/jquery-3.4.1.js"></script>
+
+	<style>
+		*{
+			margin: 0;
+			padding:0;
+		}
+		.component.menu {
+		    position: fixed;
+		    top: 20px;
+		    left: 20px;
+		    height: 46px;
+		    width: 90px;
+		    background: black;
+		    z-index: 100;
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0.3s;
+		    color: white;
+		}
+
+		.component.menu .containerMenu {
+		    position: relative;
+		    width: calc(100% - 20px);
+		    height: 100%;
+		    padding: 0 10px;
+		    overflow: hidden;
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0.5s;
+		}
+
+		.containerMenu:before {
+		    content: "";
+		    position: absolute;
+		    width: 33%;
+		    height: 100%;
+		    background: #00ffdd;
+		    left: -33%;
+		    transition: all 0.3s cubic-bezier(0.97, 0.035, 0.005, 0.98);
+		}
+
+		.component.menu .logo {
+		    background: url(imgs/logo.png) no-repeat center;
+		    width: 40px;
+		    height: 46px;
+		    display: inline-block;
+		    vertical-align: middle;
+		    position: relative;
+		    z-index: 2;
+		}
+
+		.component.menu .burger {
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		    cursor: pointer;
+		    width: 45px;
+		    height: 46px;
+		    display: inline-block;
+		    vertical-align: middle;
+		    z-index: 2;
+		}
+
+		.component.menu .burger .content {
+		    width: 14px;
+		    height: 14px;
+		    position: absolute;
+		    top: calc(50% - 7px);
+		    left: calc(50% - 7px);
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0s;
+		    transform-origin: 50%;
+		}
+
+		.component.menu .burger .line {
+		    position: absolute;
+		    left: calc(50% - 7px);
+		    width: 14px;
+		    height: 2px;
+		    background: white;
+		    transform-origin: right center;
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0.3s;
+		}
+
+		.component.menu .burger .line:nth-child(1) {
+		    top: 0;
+		    transition-delay: 0.1s;
+		}
+		.component.menu .burger .line:nth-child(2) {
+		    top: calc(50% - 1px);
+		    transition-delay: 0.2s;
+		}
+		.component.menu .burger .line:nth-child(3) {
+		    top: calc(100% - 2px);
+		    transition-delay: 0.3s;
+		}
+
+		.component.menu .links {
+		    display: inline-block;
+		    vertical-align: middle;
+		    text-align: right;
+		    z-index: 10;
+		}
+
+		.component.menu ul li {
+		    opacity: 0;
+		    display: block;
+		    position: relative;
+		    float: left;
+		    vertical-align: middle;
+		    padding: 0 10px;
+		    overflow: hidden;
+		    transition: all 0.1s cubic-bezier(0, 0, 0, 0.96);
+		    transform: translate(0, -5px);
+		}
+		.component.menu ul li a {
+		    text-decoration: none;
+		    position: relative;
+		}
+		
+		.component:hover {
+			width: 275px;
+			transition: .2s;
+		}
+
+		.component:hover ul li{
+			opacity: 1;
+			transition: all 0.3s cubic-bezier(0,0,0,.96);
+			transform: translate(0,0px);
+		}
+
+		.component.menu:hover .burger .line:nth-child(1) {
+		    top: 0;
+		    opacity: 0;
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0.1s;
+		}
+		.component.menu:hover .burger .line:nth-child(2) {
+		    top: calc(50% - 1px);
+		    opacity: 0;
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0.2s;
+		}
+		.component.menu:hover .burger .line:nth-child(3) {
+		    top: calc(100% - 2px);
+		    opacity: 0;
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);s
+		    transition-delay: 0.3s;
+		}
+
+		.component:hover .containerMenu::before{
+			left: 100%;
+		}
+
+		.component.menu ul li:before{
+			 background: black;
+		    content: attr(data-text);
+		    position: absolute;
+		    top: 0;
+		    left: 10px;
+		    color: #00ffdd;
+		    z-index: 2;
+		    width: 0%;
+		    overflow: hidden;
+		    transition: width 0.3s;
+		    white-space: nowrap;
+		    -webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		    pointer-events: none;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="component menu">
+		<div class="containerMenu">
+			<a class="logo" href="/" disabled=""></a>
+			<div class="burger"><div class="content">
+				<div class="line"></div>
+				<div class="line"></div>
+				<div class="line"></div>
+			</div>
+		</div>
+		<ul class="links">
+			<li class="" data-text="works">
+				<a href="/works">
+					<span>works</span>
+				</a>
+			</li>
+			<li class="" data-text="dan paris">
+				<a href="/about">
+					<span>dan paris</span>
+				</a></li>
+				<li class="" data-text="contact">
+					<a href="/contact">
+						<span>contact</span>
+					</a>
+				</li>
+				<div class="clr"></div>
+			</ul>
+		</div>
+		<div class="routeManager undefined" style="opacity: 1;"></div>
+	</div>
+</body>
+</html>
