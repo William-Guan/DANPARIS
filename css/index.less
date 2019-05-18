@@ -16,6 +16,7 @@
 		width: 100%;
 		visibility: hidden;
 		height: 100%;
+		z-index: 2;
 	}
 	.pattern::before{
 		content: "";
@@ -45,6 +46,7 @@
 	    width: 100%;
 	    height: 100%;
 	    z-index: 990;
+	    overflow: hidden;
 
 	    .black,.green{
 			position: absolute;
@@ -172,52 +174,58 @@
 			opacity: 0;
 		}
 	}
-	
-	.home-title{
+	.titles{
+		position: absolute;
 		width: 100%;
 		height: 100%;
-		position: relative;
-		h1{	
-			position: absolute;
-			left: 50%;
-			top: 50%;
+		top: 0;
+		left: 0;
+		.home-title{
 			width: 100%;
-			text-align: center;
-			transform: translateX(-50%) translateY(-50%);
-			color: white;
-			font-size: 80px;
-			font-weight: 700;
-			visibility: hidden;
-			z-index: 11;
-
-		}
-		h1>span{
+			height: 100%;
+			position: relative;
+			h1{	
+				position: absolute;
+				left: 50%;
+				top: 50%;
 				width: 100%;
-		}
+				text-align: center;
+				transform: translateX(-50%) translateY(-50%);
+				color: white;
+				font-size: 80px;
+				font-weight: 700;
+				visibility: hidden;
+				z-index: 11;
 
-		.description {
-		    position: absolute;
-		    left: 50px;
-		    bottom: 50px;
-		    text-align: center;
-		    color: white;
-		    text-transform: lowercase;
-		    font-size: 16px;
-		    display: -ms-flexbox;
-		    display: flex;
-		    -ms-flex-align: center;
-		    align-items: center;
-			z-index:10;
-		    .client{
-		    	font-size: 20px;
-		    }
-		    .hashtags {
-			    opacity: 0.5;
 			}
-			> * {
-				display: inline-block;
-			    vertical-align: middle;
-			    margin: 0 10px;
+			h1>span{
+					width: 100%;
+			}
+
+			.description {
+			    position: absolute;
+			    left: 50px;
+			    bottom: 50px;
+			    text-align: center;
+			    color: white;
+			    text-transform: lowercase;
+			    font-size: 16px;
+			    display: -ms-flexbox;
+			    display: flex;
+			    -ms-flex-align: center;
+			    align-items: center;
+				z-index:10;
+			    .client{
+			    	font-size: 20px;
+			    }
+			    .hashtags {
+				    opacity: 0.5;
+				}
+				> * {
+					display: inline-block;
+				    vertical-align: middle;
+				    margin: 0 10px;
+				}
 			}
 		}
 	}
@@ -474,9 +482,6 @@
 		    opacity: 0;
 		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
 		    transition-delay: 0.2s;
-		}
-		.burger .line:nth-child(3) {
-		    top: calc(100% - 2px);
 		    opacity: 0;
 		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);s
 		    transition-delay: 0.3s;
@@ -486,3 +491,4 @@
 			left: 100%;
 		}
 	}
+

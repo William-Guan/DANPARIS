@@ -1,3 +1,8 @@
+
+let homeTitles = ['THE MAGIC WALLPAPER','HANDSAWAY',
+					'IT\'S JUST THE BELL','WHY SO SERIOUS',
+					'SPARKS IN COLORS','THE IMPOSSIBLE CHANLLENGE',
+					'THE SOUND OF SLIVER','CROSSING AT OWN RISK'];
 // 点击切换视频 传入true左
 function toggleslide(direction){
 	clearTimeout(clicktimer);
@@ -184,40 +189,35 @@ var index = 0;		// 视频轮播下标
 var timer;
 var hasRemove = true;
 var clicktimer ;
-let videos = [new vidbg('body', {
+let videos = [new vidbg('.videos', {
 	      mp4: 'media/1.mp4',
 	      overlay: false
 }, {}),
-new vidbg('body', {
+new vidbg('.videos', {
 	      mp4: 'media/2.mp4',
 	      overlay: false
 }, {}),
-new vidbg('body', {
+new vidbg('.videos', {
 	      mp4: 'media/3.mp4',
 	      overlay: false
 }, {}),
-new vidbg('body', {
+new vidbg('.videos', {
 	      mp4: 'media/4.mp4',
 	      overlay: false
 }, {}),
-new vidbg('body', {
+new vidbg('.videos', {
 	      mp4: 'media/5.mp4',
 	      overlay: false
 }, {}),
-new vidbg('body', {
+new vidbg('.videos', {
 	      mp4: 'media/6.mp4',
 	      overlay: false
 }, {}),
-new vidbg('body', {
+new vidbg('.videos', {
 	      mp4: 'media/7.mp4',
 	      overlay: false
 }, {}),
-new vidbg('body', {
+new vidbg('.videos', {
 	      mp4: 'media/8.mp4',
 	      overlay: false
 }, {})];
-
-let homeTitles = ['THE MAGIC WALLPAPER','HANDSAWAY',
-					'IT\'S JUST THE BELL','WHY SO SERIOUS',
-					'SPARKS IN COLORS','THE IMPOSSIBLE CHANLLENGE',
-					'THE SOUND OF SLIVER','CROSSING AT OWN RISK'];
