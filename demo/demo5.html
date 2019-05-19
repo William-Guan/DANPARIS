@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+		.sss{
+			width: 100px;
+			height: 100px;
+			background-color: skyblue;
+			-webkit-perspective: 1000px;
+			perspective: 1000px
+		
+		}
+		.sss:hover{
+			
+			transform:perspective(500px) translate3d(0,0,100px);
+			transition: 2s;
+		}
+	</style>
+</head>
+<body>
+	<div class="sss"></div>
+</body>
+</html>
