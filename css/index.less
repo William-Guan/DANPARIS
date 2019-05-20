@@ -22,12 +22,13 @@
 	}
 
 	.pattern{
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		visibility: hidden;
 		height: 100%;
+		transition: visibility .3s;
 		z-index: 2;
 	}
 	.pattern::before{
@@ -83,18 +84,19 @@
 	    position: absolute;
 	    bottom: 30px;
 	    border-radius: 50%;
-	    z-index: 2;}
-
-	.right{
+	    z-index: 2;
+	}
+	.controls.right{
 		right: 30px;
 		opacity: 1;
 	}
 
-	.left{
+	.controls.left{
 		right: 100px;
 		opacity: 1;
 	}
-    .right::before{
+
+	.controls.right::before{
 		content: "";
 	    position: absolute;
 	    box-sizing: border-box;
@@ -106,7 +108,7 @@
 	    border: 2px solid rgba(255, 255, 255, 0.25);
 	}
 
-	.right::after{
+	.controls.right::after{
 			content: "";
 		    position: absolute;
 		    width: 100%;
@@ -117,7 +119,7 @@
 		    background-size: 7px 14px;
 	};
 
-	.left::before{
+	.controls.left::before{
 		content: "";
 	    position: absolute;
 	    box-sizing: border-box;
@@ -129,7 +131,7 @@
 	    border: 2px solid rgba(255, 255, 255, 0.25);
 	}
 
-	.left::after{
+	.controls.left::after{
 		content: "";
 	    position: absolute;
 	    transform: rotateY(180deg);
@@ -141,7 +143,7 @@
 	    background-size: 7px 14px;
 	    
 	}
-	.right:hover::after{
+	.controls.right:hover::after{
 		content: "";
 	    position: absolute;
 	    width: 100%;
@@ -153,7 +155,7 @@
 	    animation: moveleft .6s;
 	}
 
-	.left:hover::after{
+	.controls.left:hover::after{
 		content: "";
 	    position: absolute;
 	    width: 100%;
@@ -162,7 +164,7 @@
 	    top: 0;
 	    background: url(../imgs/arrow_right.png) no-repeat center;
 	    background-size: 7px 14px;
-	    animation: moveright .6s;
+	    animation: moveright .4s;
 	}
 
 	@keyframes moveleft{
@@ -204,7 +206,7 @@
 				text-align: center;
 				transform: translateX(-50%) translateY(-50%);
 				color: white;
-				font-size: 80px;
+				font-size: 90px;
 				font-weight: 700;
 				visibility: hidden;
 				z-index: 11;
