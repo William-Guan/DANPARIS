@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="libs/detail.css">
+	<script type="text/javascript" src="libs/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<div class="component detail" style="display: block;">
+	 	<div class="component footer">
+     	<div class="container">
+ 			<div class="center">
+ 				<div class="column">
+     				<h3><span>address</span></h3>
+  					<div class="rightContainer"><div class="text">162-164 rue de Billancourt</div><div class="text">92100 Boulogne-Billancourt</div><div class="text">France</div><div class="phone"><span class="grey">+33</span><!-- react-text: 1141 -->(0)1 49 09 70 10<!-- /react-text --></div></div>'
+ 				</div>
+ 				<div class="column" style="opacity: 0.999999; transform: translate3d(0px, 0px, 0px);"><h3><span>emails</span></h3><div class="rightContainer"><div class="text"><a href="mailto:hello@danparis.fr"><span class="hover">hello@danparis.fr</span></a><a href="mailto:businessenquiries@danparis.fr"><span class="hover">businessenquiries@danparis.fr</span></a><a href="mailto:jobs@danparis.fr"><span class="hover">jobs@danparis.fr</span></a></div></div></div>
+ 				<div class="column" style="opacity: 0.999999; transform: matrix(1, 0, 0, 1, 0, 0);"><h3><span>follow us</span></h3><div class="rightContainer"><div class="links"><a target="blank" href="https://www.facebook.com/danparisagency"><span class="hover"><span class="facebook"></span><!-- react-text: 1161 -->facebook<!-- /react-text --></span></a><a target="blank" href="https://www.instagram.com/danparis/"><span class="hover"><span class="instagram"></span><!-- react-text: 1165 -->instagram<!-- /react-text --></span></a><a target="blank" href="https://www.linkedin.com/company/dan-paris"><span class="hover"><span class="linkedin"></span><!-- react-text: 1169 -->linkedin<!-- /react-text --></span></a><a target="blank" href="https://twitter.com/tbwadanparis"><span class="hover"><span class="twitter"></span><!-- react-text: 1173 -->twitter<!-- /react-text --></span></a></div></div></div>
+ 			</div>
+   		</div>
+ 	</div>
+ </div>
+
+ <script type="text/javascript">
+
+ 	$('.footer').show();
+ 
+ 	$(function(){
+ 		$('.column').eq(0).css({
+ 			'transition' : 'opcity 1s, transform .8s',
+	 		'opacity': '1',
+	 		'transform': 'translateY(-200px)',
+	 		
+ 		});
+ 		$('.column').eq(1).css({
+	 		'opacity': '1',
+	 		'transform': 'translateY(-200px)',
+	 		'transition' : 'opcity 1s, transform .8s .1s'
+ 		});
+ 		$('.column').eq(2).css({
+	 		'opacity': '1',
+	 		'transform': 'translateY(-200px)',
+	 		'transition' : 'opcity 1s, transform .8s .2s'
+ 		});
+ 	})
+ 	
+ </script>
+</body>
+</html>

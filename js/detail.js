@@ -46,8 +46,27 @@ detailHTML     += ' 				 	</div>'
 detailHTML     += ' 				</div>'
 detailHTML     += '     		</div>'
 detailHTML     += '         </div>'
+detailHTML     += '         <div class="spaceFooter"></div>'
+detailHTML     += ' 	</div>'
+detailHTML     += ' 	<div class="component footer">'
+detailHTML     += '     	<div class="container">'
+detailHTML     += ' 			<div class="center">'
+detailHTML     += ' 				<div class="column">'
+detailHTML     += '     				<h3><span>address</span></h3>'
+detailHTML     += '  					<div class="rightContainer"><div class="text">162-164 rue de Billancourt</div><div class="text">92100 Boulogne-Billancourt</div><div class="text">France</div><div class="phone"><span class="grey">+33</span><!-- react-text: 1141 -->(0)1 49 09 70 10<!-- /react-text --></div></div>'
+detailHTML     += ' 				</div>'
+detailHTML     += ' 				<div class="column" style="opacity: 0.999999; transform: translate3d(0px, 0px, 0px);"><h3><span>emails</span></h3><div class="rightContainer"><div class="text"><a href="mailto:hello@danparis.fr"><span class="hover">hello@danparis.fr</span></a><a href="mailto:businessenquiries@danparis.fr"><span class="hover">businessenquiries@danparis.fr</span></a><a href="mailto:jobs@danparis.fr"><span class="hover">jobs@danparis.fr</span></a></div></div></div>'
+detailHTML     += ' 				<div class="column" style="opacity: 0.999999; transform: matrix(1, 0, 0, 1, 0, 0);"><h3><span>follow us</span></h3><div class="rightContainer"><div class="links"><a target="blank" href="https://www.facebook.com/danparisagency"><span class="hover"><span class="facebook"></span><!-- react-text: 1161 -->facebook<!-- /react-text --></span></a><a target="blank" href="https://www.instagram.com/danparis/"><span class="hover"><span class="instagram"></span><!-- react-text: 1165 -->instagram<!-- /react-text --></span></a><a target="blank" href="https://www.linkedin.com/company/dan-paris"><span class="hover"><span class="linkedin"></span><!-- react-text: 1169 -->linkedin<!-- /react-text --></span></a><a target="blank" href="https://twitter.com/tbwadanparis"><span class="hover"><span class="twitter"></span><!-- react-text: 1173 -->twitter<!-- /react-text --></span></a></div></div></div>'
+detailHTML     += ' 			</div>'
+detailHTML     += '   		</div>'
 detailHTML     += ' 	</div>'
 detailHTML     += ''
+detailHTML     += ''
+detailHTML     += ''
+detailHTML     += ''
+detailHTML     += ''
+detailHTML     += ''
+
 detailHTML     += '</div">'
 var videoEl;
 function loadVideo(){
@@ -75,6 +94,21 @@ function bindEvent(){
 			videoEl.pauseVideo();
 			$('.play').fadeIn('fast');
 		}
+	});
+
+	$(document).scroll(function(event) {
+		var scroH = parseInt($(this).scrollTop()); //滚动高度
+        var viewH = $(this).height(); //可见高度
+        var contentH = $('.page').get(0).scrollHeight; //内容高度
+        var footerHeight = $('.footer').get(0).scrollHeight;
+ 
+        if(scroH >= (viewH -contentH ) ){
+        	$('.component.detail .footer').show();
+        }
+        if(scroH < (viewH - footerHeight -window.innerHeight)){
+        	$('.component.detail .footer').hide();
+        }
+       
 	});
 }
 
