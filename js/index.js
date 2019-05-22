@@ -23,7 +23,6 @@ function toggleslide(direction){
 function loopTimer(){
 	timer = setInterval(function(){
 		slideVideos(false,()=>{
-			console.log($('.home-title h1').eq(index));
 			$('.home-title h1').eq(index).textillate('in');	// 视频完全撤场之后显示title
 		});
 	}, 5000);
@@ -233,12 +232,20 @@ $('.works').click(()=>{
 	loadTransitionAnim(()=>{
 		$('.page').append(pageWorkHtml);
 		$('.component .list').hide().fadeIn(800);
-		$(document).trigger('scroll');
 		$('.pattern').css({
 			'visibility': 'visible'
 		});
+		loadItems();
+		$(document).trigger('scroll');
+
 	});
 	stopIndexTimer();
+});
+$('.discover').click(()=>{
+	$('.page').empty();
+	loadTransitionAnim(()=>{
+		loadDetailPage('.page');
+	});
 });
 
 $('.logo').click(()=>{
@@ -288,6 +295,8 @@ new vidbg('.videos', {
 	      overlay: false
 }, {})];
 
+
+
 /* HOME PAGE*/
 var pageHomeHtml = 	'<div class="videos" style="height: 100%;width: 100%"></div>'
 	pageHomeHtml += '<div class="pattern"></div>'
@@ -308,162 +317,4 @@ var pageHomeHtml = 	'<div class="videos" style="height: 100%;width: 100%"></div>
 	pageHomeHtml += '	</div>'
 	pageHomeHtml += '</a>'
 
-/* WORK PAGE*/
-var pageWorkHtml = '<div class="component list" >'
-	pageWorkHtml    += '	<div class="component background">'
-	for(let i = 0; i < 400; i++){
-	pageWorkHtml    += ' 		<div class="circle"></div>'
-	}
-	pageWorkHtml    += '	</div>'
-	pageWorkHtml    += ' 	<div class="pattern"></div>'
-	pageWorkHtml    += ' 	<div class="component grid">'
-	pageWorkHtml    += ' 		<div class="left">'
-	pageWorkHtml	+= ' 			<div class="content">'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'		
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml	+= '            </div>'
-	pageWorkHtml    += '        </div>'
-	pageWorkHtml	+= ' 		<div class="right">'
-	pageWorkHtml    += ' 			<div class="content">'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += '            	<div class="component gridItem big">'
-	pageWorkHtml    += '                	<a id="pitchr" href="#">'
-	pageWorkHtml    += '                    	<div class="contentAsset">'
-	pageWorkHtml    += ' 							<img src="imgs/works-thumbnail.jpg"  name="home_preview_1494947443043" lineheight="0">'
-	pageWorkHtml    += ' 					  	</div>' 
-	pageWorkHtml    += '                        <div class="texts">' 
-	pageWorkHtml    += '                        	<div class="client">Nissan</div>'
-	pageWorkHtml    += '                            <br>'
-	pageWorkHtml    += ' 							<div class="project">'
-	pageWorkHtml    += '                            	Pitch-R'
-	pageWorkHtml    += '                            </div>'
-	pageWorkHtml    += '                        </div>' 
-	pageWorkHtml 	+= '                    </a>'
-	pageWorkHtml	+= '                </div>'
-	pageWorkHtml    += ' 			</div>'
-	pageWorkHtml    += ' 		</div>'
-	pageWorkHtml    += ' 	</div>'
-	pageWorkHtml    += '</div>'
+
