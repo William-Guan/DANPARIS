@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script type="text/javascript" src="libs/jquery-3.4.1.js"></script>
+	<style>
+		div{
+			position: fixed;
+			bottom: 20px;
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="../imgs/loader.gif" alt="" width="50" height="50">	
+	</div>
+	
+</body>
+
+<script type="text/javascript">
+	$('div').click(function(event) {
+		$(this).animate({'top':0}, 400,function(){
+			$(this).css({'top':window.innerHeight-50});
+		})
+	});
+</script>
+</html>

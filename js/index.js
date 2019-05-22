@@ -143,17 +143,24 @@ function createTitle(title,ineffect,outeffect){
 		});
 }
 
-function loadTransitionAnim(callback){
+function clearPage(){
+	$('.page').empty();
+	$(document).off();
+	$(window).off();
+}
+
+function loadTransitionAnim(callback,doneCallback){
 	anime({
 	  targets: '.green',
 	  translateY: '-100%',
 	  easing: 'easeInOutExpo',
 	  duration: 1100,
-	  complete: ()=> loadingDone(callback)
+	  complete: ()=> {clearPage()
+	  loadingDone(callback,doneCallback)}
 	});
 	anime({
 	  targets: '.black',
-	  translateY: '0%',
+	  translateY: '0%',	
 	  easing: 'easeInOutExpo',
 	  delay: 100,
 	  duration: 1000,
@@ -164,6 +171,7 @@ function loadTransitionAnim(callback){
 		  easing: 'linear',
 		  duration: 300,
 		  complete: ()=>{
+		  	
 		  	$('.green,.black').css('transform','translateY(100%)');
 		  }
 		})
@@ -171,136 +179,96 @@ function loadTransitionAnim(callback){
 	});
 }
 
-function loadHomePage(){
-	initHomeTitle();
-	index = 0;
-	hasRemove = true;
-
-	videos =[new vidbg('.videos', {
-	      mp4: 'media/1.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/2.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/3.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/4.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/5.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/6.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/7.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/8.mp4',
-	      overlay: false
-}, {})];
-$('.home-title h1').eq(index).textillate('in');	// 第一次手动显示title
-$('.pattern')[0].style.visibility = 'visible'; // 显示方块蒙版
-}
-
-
 window.onload = () => {
-	// $('.works').trigger('click');
-	$('.page').empty();
-	loadTransitionAnim(()=>{
-		loadDetailPage('.page');
-	});
-
-	// initHomeTitle();
-	// loadingDone(()=>{
-	// 	$('.home-title h1').eq(index).textillate('in');	
-	// 	$('.pattern')[0].style.visibility = 'visible'; // 显示方块蒙版
-	// 	loopTimer();	
+	// clearPage();
+	// $('.page').empty();
+	// loadTransitionAnim(()=>{		
+	// 	loadDetailPage('.page');
 	// });
+	loadingDone(()=>{
+		loadIndex();
+	},()=>{
+		startLoop();
+	});
 }
 
-
-
-$('.controls.right').click( ()=>toggleslide(false));
-$('.controls.left').click( ()=>toggleslide(true));
 $('.works').click(()=>{
-	$('.page').empty();
 	loadTransitionAnim(()=>{
 		$('.page').append(pageWorkHtml);
 		$('.component .list').hide().fadeIn(800);
-		$('.pattern').css({
-			'visibility': 'visible'
-		});
+		$('.pattern').css({'visibility': 'visible'});
 		loadItems();
 		$(document).trigger('scroll');
-
 	});
 	stopIndexTimer();
 });
-$('.discover').click(()=>{
-	$('.page').empty();
-	loadTransitionAnim(()=>{
-		loadDetailPage('.page');
+
+function indexBindEvent(){
+	$('.discover').click(()=>{
+		clearPage();
+		loadTransitionAnim(()=>{
+			loadDetailPage('.page');
+		});
 	});
-});
+
+	$('.controls.right').click( ()=>toggleslide(false));
+	$('.controls.left').click( ()=>toggleslide(true));
+}
 
 $('.logo').click(()=>{
-	$('.page').empty();
-	loadTransitionAnim(()=>{
-		$('.page').append(pageHomeHtml);
-		loadHomePage();
-		loopTimer();
-	});
+	loadTransitionAnim(loadIndex,startLoop);
 });
 
+function startLoop(){
+	$('.home-title h1').eq(index).textillate('in');	
+	$('.pattern')[0].style.visibility = 'visible'; // 显示方块蒙版
+	loopTimer();
+}
+
+function loadIndex(){
+	$('.page').append(pageHomeHtml);
+	index = 0;
+	hasRemove = true;
+	initHomeTitle();
+	indexBindEvent();
+	videos = [new vidbg('.videos', {
+		      mp4: 'media/1.mp4',
+		      overlay: false
+	}, {}),
+	new vidbg('.videos', {
+		      mp4: 'media/2.mp4',
+		      overlay: false
+	}, {}),
+	new vidbg('.videos', {
+		      mp4: 'media/3.mp4',
+		      overlay: false
+	}, {}),
+	new vidbg('.videos', {
+		      mp4: 'media/4.mp4',
+		      overlay: false
+	}, {}),
+	new vidbg('.videos', {
+		      mp4: 'media/5.mp4',
+		      overlay: false
+	}, {}),
+	new vidbg('.videos', {
+		      mp4: 'media/6.mp4',
+		      overlay: false
+	}, {}),
+	new vidbg('.videos', {
+		      mp4: 'media/7.mp4',
+		      overlay: false
+	}, {}),
+	new vidbg('.videos', {
+		      mp4: 'media/8.mp4',
+		      overlay: false
+	}, {})];
+}
+var videos;
 var index = 0;		// 视频轮播下标
 var timer;
 var hasRemove = true;
 var clicktimer ;
-
-let videos = [new vidbg('.videos', {
-	      mp4: 'media/1.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/2.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/3.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/4.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/5.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/6.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/7.mp4',
-	      overlay: false
-}, {}),
-new vidbg('.videos', {
-	      mp4: 'media/8.mp4',
-	      overlay: false
-}, {})];
-
-
 
 /* HOME PAGE*/
 var pageHomeHtml = 	'<div class="videos" style="height: 100%;width: 100%"></div>'
