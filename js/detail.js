@@ -49,19 +49,33 @@ detailHTML     += '         </div>'
 detailHTML     += ' 	</div>'
 detailHTML     += ''
 detailHTML     += '</div">'
-
+var videoEl;
 function loadVideo(){
-	new vidbg('.contentAsset', {
-	      mp4: 'media/7.mp4',
-	      overlay: false
-	}, {},{'autoplay':false});
-
+	videoEl =new vidbg('.contentAsset', 
+		{mp4: 'media/8.mp4',
+	      overlay: false},{autoplay:false,muted:false});
 }
 
 function loadDetailPage(selector){
 	$(selector).append(detailHTML);
 	loadVideo();
 	initluxy();
+	bindEvent();
+}
+
+function bindEvent(){
+	$('.play').click((e)=>{
+		videoEl.playVideo();
+		$('.play').fadeOut('fast');
+		e.stopPropagation();
+	});
+
+	$('.videoContainer').click(function(event) {
+		if(!videoEl.videoEl.paused){
+			videoEl.pauseVideo();
+			$('.play').fadeIn('fast');
+		}
+	});
 }
 
 function initluxy(){
@@ -96,3 +110,4 @@ function initluxy(){
 		}
 	});
 }
+

@@ -152,23 +152,25 @@ class vidbg {
       this.videoEl[key] = this.attributes[key]
     }
 
-    // The play promise
-    let playPromise = this.videoEl.play()
+    if(this.attributes.autoplay){
+      // The play promise
+      let playPromise = this.videoEl.play()
 
-    /**
-     * If the browser supports promises, we will use the play promise
-     * to determine if autoplay is supported or not.
-     *
-     * If promises are supported, and autoplay is not supported, we will
-     * remove the HTML5 <video> element and the fallback image will be used.
-     */
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        // Autoplay has started.
-      }).catch(e => {
-        console.error('Autoplay is not supported')
-        this.removeVideo()
-      })
+      /**
+       * If the browser supports promises, we will use the play promise
+       * to determine if autoplay is supported or not.
+       *
+       * If promises are supported, and autoplay is not supported, we will
+       * remove the HTML5 <video> element and the fallback image will be used.
+       */
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // Autoplay has started.
+        }).catch(e => {
+          console.error('Autoplay is not supported')
+          this.removeVideo()
+        })
+      }
     }
 
     this.videoEl.addEventListener('canplay', this.onPlayEvent)
@@ -195,6 +197,31 @@ class vidbg {
   removeVideo = (callback) => {
     this.containerEl.style.zIndex='1';
     $(this.containerEl).hide('clip',800,callback);
+  }
+
+  playVideo = () => {
+    let playPromise = this.videoEl.play()
+      /**
+       * If the browser supports promises, we will use the play promise
+       * to determine if autoplay is supported or not.
+       *
+       * If promises are supported, and autoplay is not supported, we will
+       * remove the HTML5 <video> element and the fallback image will be used.
+       */
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // Autoplay has started.
+        }).catch(e => {
+          console.error('Autoplay is not supported')
+          this.removeVideo()
+        })
+      }
+  }
+
+  pauseVideo = () => {
+    if(!this.videoEl.paused){
+      this.videoEl.pause()
+    }
   }
 
   showVideo = () => {

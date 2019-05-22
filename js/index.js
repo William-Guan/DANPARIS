@@ -215,12 +215,17 @@ $('.pattern')[0].style.visibility = 'visible'; // 显示方块蒙版
 
 window.onload = () => {
 	// $('.works').trigger('click');
-	initHomeTitle();
-	loadingDone(()=>{
-		$('.home-title h1').eq(index).textillate('in');	
-		$('.pattern')[0].style.visibility = 'visible'; // 显示方块蒙版
-		loopTimer();	
+	$('.page').empty();
+	loadTransitionAnim(()=>{
+		loadDetailPage('.page');
 	});
+
+	// initHomeTitle();
+	// loadingDone(()=>{
+	// 	$('.home-title h1').eq(index).textillate('in');	
+	// 	$('.pattern')[0].style.visibility = 'visible'; // 显示方块蒙版
+	// 	loopTimer();	
+	// });
 }
 
 
