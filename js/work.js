@@ -1,25 +1,3 @@
-$('.page').on('mouseenter','.gridItem ',function(){
-	$('.gridItem').css({
-		'opacity': '.8',
-	});
-
-	$(this).css({
-		'transform': 'perspective(1000px) translate3d(0,0,100px)',
-		'transition':'.8s',
-		'opacity' : 1
-	});
-});
-
-$('.page').on('mouseleave','.gridItem ',function(){
-
-	$('.gridItem').css({
-		'opacity': '1',
-		'transition':'.8s'
-	});
-		$(this).css({
-		'transform': 'perspective(1000px) translate3d(0,0,10px)'
-	});
-});
 
 var Before_scollH = 0;
 function blindEvent(){
@@ -66,6 +44,36 @@ function blindEvent(){
 			});
 		}
 	});
+
+	$('.page').on('mouseenter','.gridItem ',function(){
+	$('.gridItem').css({
+		'opacity': '.8',
+	});
+
+	$(this).css({
+		'transform': 'perspective(1000px) translate3d(0,0,100px)',
+		'transition':'.8s',
+		'opacity' : 1
+		});
+	});
+
+	$('.page').on('mouseleave','.gridItem ',function(){
+
+		$('.gridItem').css({
+			'opacity': '1',
+			'transition':'.8s'
+		});
+			$(this).css({
+			'transform': 'perspective(1000px) translate3d(0,0,10px)'
+		});
+	});
+
+	$('.grid .content').on('click','a',function(){
+		clearPage();
+		loadTransitionAnim(()=>{
+			loadDetailPage('.page');
+		});
+	})
 }
 
 

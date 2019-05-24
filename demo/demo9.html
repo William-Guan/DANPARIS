@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+		.worksClose {
+		    position: fixed;
+		    top: 20px;
+		    right: 20px;
+		    height: 46px;
+		    width: 46px;
+		    z-index: 100;
+		    overflow: hidden;
+		    /*opacity: 0;*/
+		    /*pointer-events: none;*/
+		    transition: opacity 0s 0.6s;
+		}
+
+		.worksClose:before {
+		    content: "";
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    z-index: -1;
+		    background: black;
+		    transform-origin: left center;
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0.3s;
+		    /*transform: scaleX(0);*/
+		}
+
+		.worksClose:after {
+		    content: "";
+		    position: absolute;
+		    top: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: #00ffdd;
+		    left: -100%;
+		    z-index: 1;
+		    transition: all 0.3s cubic-bezier(0.97, 0.035, 0.005, 0.98);
+		}
+			
+		.content {
+		    /*opacity: 0;*/
+		    height: 100%;
+		    /*transform: rotate(-90deg);*/
+		    transition: transform 0.3s cubic-bezier(0, 0, 0, 0.96), opacity 0.2s;
+		    /*transition-delay: 0s;*/
+		    /*transform-origin: 50%;*/
+		}
+
+		.line {
+		    position: absolute;
+		    left: calc(50% - 7px);
+		    width: 14px;
+		    height: 2px;
+		    background: white;
+		    /* transform-origin: 50%; */
+		    transition: all 0.3s cubic-bezier(0, 0, 0, 0.96);
+		    transition-delay: 0s;
+		}
+		.worksClose:hover .content>div{
+			transform: rotate(90deg);
+			transition: .5s;
+		}
+		.worksClose:hover.worksClose:after{
+			left: 100%;
+		}
+		.content {
+		    opacity: 1;transform: rotate(45deg);
+		    transition: 1s;
+		}
+		.content:hover{
+			transform: rotate(45deg);
+		}
+		.content > div {
+		    height: 100%;
+		    transition: transform 0.4s;
+		}
+		.line:nth-child(1) {
+		    top: calc(50% - 1px);
+		}
+		 .line:nth-child(2) {
+		    top: calc(50% - 1px);
+		    transform: rotate(90deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="worksClose">
+		<div class="content">
+			<div>
+				<div class="line"></div>
+				<div class="line"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
