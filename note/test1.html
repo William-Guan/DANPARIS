@@ -1,0 +1,25 @@
+<script type="text/javascript">
+	/*var acount=0;
+	var s = [1,2,[2,3,4,[23,3,2],2332,[23,3]],2343];
+	function as(a){
+		a.forEach( function(element, index) {
+			if(element instanceof Array){
+				as(element);
+			}
+			acount += parseInt(element);
+		});
+	}
+	as(s);
+	console.log(acount);*/
+
+	var age = 10;
+	function calcAge(num){
+		if(num>1){
+			age+=2;
+			calcAge(--num);
+		}
+		return age;
+	}
+
+	console.log(calcAge(4));
+</script>

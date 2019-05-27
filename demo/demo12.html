@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box{width:100px; height:100px; background:red; position:absolute; left:130px; top:120px; }
+ 
+    </style>
+</head>
+<body>
+<div id="box">
+</div>
+<script src="move.js"></script>
+<script>
+    var oBox = document.getElementById('box');
+    var iRotate = 0;
+    document.onmousemove = function(ev){
+        var ev = ev||event;
+        var disX = oBox.offsetLeft;
+        var disY = oBox.offsetTop;
+        var a = ev.clientX - disX;
+        var b = ev.clientY - disY;
+        var c = Math.sqrt(a*a+b*b);
+       if(a>0&&b>0){
+           iRotate = Math.asin(b/c)+90*Math.PI/180;
+       }else if(a>0){
+           iRotate = Math.asin(a/c);
+       }
+       if(a<0&&b>0){
+           iRotate = -(Math.asin(b/c)+90*Math.PI/180);
+       }else if(a<0){
+           iRotate = Math.asin(a/c);
+       }
+ 
+ oBox.style.WebkitTransform = 'rotate('+iRotate+'rad)';
+ 
+    }
+ 
+ 
+</script>
+</body>

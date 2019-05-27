@@ -1,7 +1,7 @@
 
 let homeTitles = ['THE MAGIC WALLPAPER','HANDSAWAY',
 					'IT\'S JUST THE BELL','WHY SO SERIOUS',
-					'SPARKS IN COLORS','THE IMPOSSIBLE CHANLLENGE',
+					'SPARKS IN COLORS','THE IMPOSSIBLE',
 					'THE SOUND OF SLIVER','CROSSING AT OWN RISK'];
 // 点击切换视频 传入true左
 function toggleslide(direction){
@@ -205,7 +205,6 @@ $('.works').click(()=>{
 
 function indexBindEvent(){
 	$('.discover').click(()=>{
-		clearPage();
 		loadTransitionAnim(()=>{
 			loadDetailPage('.page');
 		});
@@ -217,6 +216,17 @@ function indexBindEvent(){
 
 $('.logo').click(()=>{
 	loadTransitionAnim(loadIndex,startLoop);
+});
+$('.danparis').click(function(event) {
+	loadTransitionAnim(()=>{
+		loadAbout();
+		danBindEvent();
+	
+		$('.component .list').hide().fadeIn(800);
+		$('.pattern').css({'visibility': 'visible'});
+		loadItems();
+	});
+	stopIndexTimer();
 });
 
 function startLoop(){
