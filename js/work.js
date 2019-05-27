@@ -69,7 +69,6 @@ function blindEvent(){
 	});
 
 	$('.grid .content').on('click','a',function(){
-		clearPage();
 		loadTransitionAnim(()=>{
 			loadDetailPage('.page');
 		});
